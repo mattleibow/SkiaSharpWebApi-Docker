@@ -1,5 +1,5 @@
 FROM microsoft/aspnetcore:2.0 AS base
-RUN apt-get update;apt-get install libfontconfig1 -y
+RUN apt-get update; apt-get install libfontconfig1 -y
 
 WORKDIR /app
 EXPOSE 80
