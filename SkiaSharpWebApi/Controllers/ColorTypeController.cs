@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkiaSharp;
 
 namespace SkiaSharpWebApi.Controllers
 {
@@ -8,7 +9,7 @@ namespace SkiaSharpWebApi.Controllers
         [HttpGet]
         public string Get()
         {
-            return "unknown";
+            return SKImageInfo.PlatformColorType.ToString().ToLowerInvariant();
         }
     }
 }
