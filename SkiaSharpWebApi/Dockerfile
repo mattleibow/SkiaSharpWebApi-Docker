@@ -11,13 +11,12 @@ COPY SkiaSharpWebApi/SkiaSharpWebApi.csproj SkiaSharpWebApi/
 RUN dotnet restore SkiaSharpWebApi/SkiaSharpWebApi.csproj
 COPY . .
 WORKDIR /src/SkiaSharpWebApi
-RUN dotnet build SkiaSharpWebApi.csproj -c Release -o /app
+RUN dotnet build SkiaSharpWebApi.csproj -c Release -o /bld
 
 FROM build AS publish
-RUN dotnet publish SkiaSharpWebApi.csproj -c Release -o /app
+RUN dotnet publish SkiaSharpWebApi.csproj -c Release -o /bld
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app .
-ENV LD_LIBRARY_PATH=/app
-ENTRYPOINT ["dotnet", "SkiaSharpWebApi.dll"]
+COPY --from=publish /bld .
+ENTRYPOINT ["dotnet","SkiaSharpWebApi.dll"]
